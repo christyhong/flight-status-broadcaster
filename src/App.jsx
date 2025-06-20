@@ -1,6 +1,13 @@
+import { useState } from "react";
 import "./App.css";
 
 function App() {
+  const [flightId, setFlightId] = useState("");
+  const [newStatus, setNewStatus] = useState("ON TIME");
+
+  const [apiResponse, setApiResponse] = useState("null");
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <div className="container">
       <header>
@@ -11,12 +18,22 @@ function App() {
       <form className="update-form">
         <div className="form-group">
           <label htmlFor="flightId">Flight ID</label>
-          <input type="text" is="flightId" placeholder="e.g., SWA123" />
+          <input
+            type="text"
+            is="flightId"
+            placeholder="e.g., SWA123"
+            value={flightId}
+            onChange={(e) => setFlightId(e.target.value)}
+          />
         </div>
 
         <div className="form-group">
           <label htmlFor="newStatus">New Status</label>
-          <select id="newStatus">
+          <select
+            id="newStatus"
+            value={newStatus}
+            onChange={(e) => setNewStatus(e.target.value)}
+          >
             <option value="ON TIME">ON TIME</option>
             <option value="DELAYED">DELAYED</option>
             <option value="GROUNDED">GROUNDED</option>
